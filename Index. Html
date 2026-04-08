@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boutique de Montres</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar à gauche */
+    .sidebar {
+      width: 220px;
+      background-color: #000;
+      border-right: 3px solid #ff1493;
+      padding: 20px 0;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: #ff1493;
+      margin-bottom: 30px;
+      font-size: 1.4em;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #222;
+      border-left-color: #ff1493;
+    }
+
+    .sidebar a.active {
+      background-color: #222;
+      border-left-color: #ff1493;
+    }
+
+    /* Contenu principal */
+    .main {
+      flex: 1;
+      padding: 30px;
+      background: linear-gradient(135deg, #111 0%, #222 100%);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo h1 {
+      font-size: 2.2em;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #ff1493;
+    }
+
+    /* Pages (on affiche seulement une à la fois) */
+    .page {
+      display: none;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      border: 1px solid #ff1493;
+    }
+
+    .page h2 {
+      color: #ff1493;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Formulaire d'inscription */
+    .signup-form input,
+    .signup-form button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .signup-form button {
+      background-color: #ff1493;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .signup-form button:hover {
+      background-color: #ff007f;
+    }
+
+    /* Panier simple */
+    .cart-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      background-color: #2a2a2a;
+      border-left: 3px solid #ff1493;
+    }
+
+    /* Contact */
+    .contact-form textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    /* Produits */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .product-card {
+      background-color: #222;
+      border-radius: 8px;
+      padding: 12px;
+      width: 200px;
+      text-align: center;
+      border: 1px solid #333;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      border: 1px solid #ff1493;
+    }
+
+    .product-card h3 {
+      color: #ff1493;
+      font-size: 1.1em;
+    }
+
+    .product-card p {
+      color: #ccc;
+      font-size: 0.9em;
+      margin: 5px 0;
+    }
+
+    .product-card button {
+      margin-top: 8px;
+      background-color: #ff1493;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background-color: #ff007f;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar à gauche -->
+  <div class="sidebar">
+    <h2>MENU</h2>
+    <a href="#" onclick="showPage('home')">Accueil</a>
+    <a href="#" onclick="showPage('signup')">Inscription</a>
+    <a href="#" onclick="showPage('cart')">Panier</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+    <a href="#" onclick="showPage('products')">Produits</a>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="main">
+    <!-- Nom du site au centre -->
+    <div class="logo">
+      <h1>Watches<span>Shop</span></h1>
+    </div>
+
+    <!-- Page d'accueil -->
+    <div id="home" class="page active">
+      <h2>Bienvenue sur WatchesShop</h2>
+      <p>La meilleure boutique en ligne de montres élégantes et de luxe.</p>
+      <p>Explorez nos collections et trouvez la montre qui correspond à votre style.</p>
+    </div>
+
+    <!-- Page inscription -->
+    <div id="signup" class="page">
+      <h2>Formulaire d'inscription</h2>
+      <form class="signup-form">
+        <input type="text" placeholder="Nom" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Mot de passe" required />
+        <input type="password" placeholder="Confirmer le mot de passe" required />
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+
+    <!-- Page panier -->
+    <div id="cart" class="page">
+      <h2>Votre Panier</h2>
+      <div class="cart-item">
+        <strong>Montre Chrono Noir</strong> - 99.99 €
+      </div>
+      <div class="cart-item">
+        <strong>Montre Sport Rose</strong> - 129.99 €
+      </div>
+      <p style="margin-top: 10px; font-weight: bold;">Total : 229.98 €</p>
+    </div>
+
+    <!-- Page contact -->
+    <div id="contact" class="page">
+      <h2>Contactez-nous</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Votre nom" />
+        <input type="email" placeholder="Votre email" />
+        <textarea placeholder="Votre message"></textarea>
+        <button type="submit" style="background: #ff1493; color: white; padding: 10px; border: none; margin-top: 10px; cursor: pointer;">Envoyer</button>
+      </form>
+    </div>
+
+    <!-- Page produits -->
+    <div id="products" class="page">
+      <h2>Nos Montres</h2>
+      <div class="products">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/200x150/000000/ff1493?text=Montre+Noire" alt="Montre Noire" />
+          <h3>Montre Noire Classique</h3>
+          <p>Prix: 149.99 €</p>
+          <button>Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/200x150/ff1493/ffffff?text=Montre+Rose" alt="Montre Rose" />
+          <h3>Montre Rose Élégante</h3>
+          <p>Prix: 169.99 €</p>
+          <button>Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/200x150/333333/ff1493?text=Montre+Sport" alt="Montre Sport" />
+          <h3>Montre Sport Luxe</h3>
+          <p>Prix: 219.99 €</p>
+          <button>Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script pour changer les pages (onglets) -->
+  <script>
+    function showPage(pageId) {
+      // Cacher toutes les pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      // Afficher la page sélectionnée
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
